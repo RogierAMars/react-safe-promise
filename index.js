@@ -34,7 +34,9 @@ export default function safePromise(Clazz){
       this.__promiseCallbacks = [];
     }
     componentWillUnmount(){
-      super.componentWillUnmount();
+      if (typeof super.componentWillUnmount === 'function') {
+        super.componentWillUnmount();
+      }
       this.__promiseCallbacks.forEach(v=>v());
     }
     safePromise(promise){
